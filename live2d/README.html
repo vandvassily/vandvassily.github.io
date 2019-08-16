@@ -14,13 +14,13 @@
 <span class="tag">&lt;/<span class="name">div</span>&gt;</span></code></pre>
 <p>在你博客程序页脚文件（footer）引入脚本，在 body 标签结束前插入如下代码：</p>
 <pre><code class="html"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span>
-    var message_Path = '/live2d/'
-    var home_Path = 'https://haremu.com/'  //此处修改为你的域名，必须带斜杠
+<span class="javascript">    <span class="keyword">var</span> message_Path = <span class="string">'/live2d/'</span></span>
+<span class="javascript">    <span class="keyword">var</span> home_Path = <span class="string">'https://haremu.com/'</span>  <span class="comment">//此处修改为你的域名，必须带斜杠</span></span>
 <span class="tag">&lt;/<span class="name">script</span>&gt;</span>
 <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/live2d/js/live2d.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
 <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/live2d/js/message.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
 <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span>
-    loadlive2d("live2d", "/live2d/model/tia/model.json");
+<span class="javascript">    loadlive2d(<span class="string">"live2d"</span>, <span class="string">"/live2d/model/tia/model.json"</span>);</span>
 <span class="tag">&lt;/<span class="name">script</span>&gt;</span></code></pre>
 <p>鼠标放在页面某个元素上时，需要 Live2D 看板娘提示的请修改 message.json 文件。</p>
 <p><strong>示例：</strong></p>

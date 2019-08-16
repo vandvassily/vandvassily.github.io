@@ -1,3 +1,2 @@
-# vandvassily.github.io
-
-Personal Blog
+# hexo-blog
+hexo-blog config
