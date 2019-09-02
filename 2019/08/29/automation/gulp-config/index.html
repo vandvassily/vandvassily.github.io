@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>vandvassily&#39;s blog</title>
+  <title>gulp配置 | vandvassily&#39;s blog</title>
   
   <meta name="keywords" content="blog">
   
@@ -59,7 +59,7 @@
   
   
   <div class="cover-wrapper">
-    <cover class='cover  '>
+    <cover class='cover post half'>
       
         
   <img class='logo' src='/assets/logo.jpg'/>
@@ -273,26 +273,10 @@
     <div class='body-wrapper'>
       <div class='l_main'>
   
-  <section class="post-list">
-    
-      
-        
-          
-        
-          
-        
-          
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
+
   
+    <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -301,11 +285,13 @@
     <div class="meta" id="header-meta">
       
         
-  <h2 class="title">
-    <a href="/2019/08/29/automation/gulp-config/">
-      gulp配置
-    </a>
-  </h2>
+  
+    <h1 class="title">
+      <a href="/2019/08/29/automation/gulp-config/">
+        gulp配置
+      </a>
+    </h1>
+  
 
 
       
@@ -352,6 +338,19 @@
         
           
             
+  
+    <div class="new-meta-item browse busuanzi">
+      <a class='notlink'>
+        <i class="fas fa-eye" aria-hidden="true"></i>
+        <p>
+          <span id="busuanzi_value_page_pv">
+            <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+          </span>
+        </p>
+      </a>
+    </div>
+  
+
 
           
         
@@ -368,9 +367,9 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h1 id="gulp配置"><a href="#gulp配置" class="headerlink" title="gulp配置"></a>gulp配置</h1><p>gulp前端工程构建工具，功能强大，配置简单灵活</p>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          <h1 id="gulp配置"><a href="#gulp配置" class="headerlink" title="gulp配置"></a>gulp配置</h1><p>gulp前端工程构建工具，功能强大，配置简单灵活</p>
 <p>我暂时只用到以下几方面</p>
 <blockquote>
 <ol>
@@ -402,368 +401,95 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># gulpfile.js</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>);</span><br><span class="line">···</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">images</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> src(<span class="string">'src/**/*.&#123;png,jpg,gif&#125;'</span>)</span><br><span class="line">        .pipe(imagemin())</span><br><span class="line">        .pipe(dest(<span class="string">'dist/'</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="html处理"><a href="#html处理" class="headerlink" title="html处理"></a>html处理</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTimestamp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timestamp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">return</span> isDevelopment()</span><br><span class="line">        ? timestamp.getTime()</span><br><span class="line">        : dayjs().format(<span class="string">'YYYY-MM-DD-HH-mm-ss'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * html页面添加公共头部和尾部，以及添加时间戳或版本戳</span></span><br><span class="line"><span class="comment"> * 开发环境为时间戳，生产环境为日期戳</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">html</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> src([<span class="string">'src/**/*.html'</span>])</span><br><span class="line">        .pipe(fileinclude(&#123;</span><br><span class="line">            prefix: <span class="string">'@@'</span>,</span><br><span class="line">            basepath: <span class="string">'@file'</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(replace(<span class="string">'@version'</span>, <span class="string">'v='</span> + getTimestamp()))</span><br><span class="line">        .pipe(dest(<span class="string">'dist/'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/自动化工程/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>自动化工程</a>
-        
-          <a href="/tags/构建/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>构建</a>
-        
-          <a href="/tags/gulp/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>gulp</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
-  
-
-
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/08/16/automation/travis-ci/">
-      travis自动构建和部署vuePress文档到Github Pages
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
+        </div>
         
           
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://vandvassily.cn" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>vandvassily</p>
-    </a>
-  </div>
 
 
-          
+  <section class='meta' id="footer-meta">
+    <hr>
+    <div class='new-meta-box'>
+      
         
-          
-            <div class="new-meta-item date">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2019-09-02T11:42:13+08:00">
   <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-08-16</p>
+    <i class="fas fa-clock" aria-hidden="true"></i>
+    <p>最后更新于 2019年9月2日</p>
   </a>
 </div>
 
-          
         
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/自动化工程/构建工具/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>自动化工程&nbsp;/&nbsp;构建工具</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
       
-        <hr>
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/自动化工程/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>自动化工程</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/构建/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>构建</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/gulp/" rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>gulp</p></a></div>
+
+
+        
+      
+        
+          
+
+        
       
     </div>
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>Github中每个仓库都可以设置Github pages。仓库会有一个特殊的分支，gh-pages，该分支会在特殊位置发布，具体的访问地址为username.github.io/my-repository-name,访问的页面为gh-pages中的index.html。</p>
-<p>例如我的仓库，<a href="https://github.com/vandvassily/css-trick" target="_blank" rel="noopener">css-trick</a>，Github Pages的访问地址为 <a href="http://vandvassily.github.io/css-trick/" target="_blank" rel="noopener">http://vandvassily.github.io/css-trick/</a>,因为我配置了自己的域名 <a href="vandvassily.cn">vandvassily.cn</a>，所以浏览器地址栏的域名显示为<a href="http://vandvassily.cn/css-trick/">http://vandvassily.cn/css-trick/</a></p>
-<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><p>在Github中新建仓库，克隆仓库到本地开发环境</p>
-<h2 id="初始化vuePress项目"><a href="#初始化vuePress项目" class="headerlink" title="初始化vuePress项目"></a>初始化vuePress项目</h2><p>参考<a href="https://vuepress.vuejs.org/zh/guide/" target="_blank" rel="noopener">vuePress官方文档</a>，需要注意的是在<code>docs/.vuepress/config.js</code>中设置正确的<code>base</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#docs/.vuepress/config.js</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    base: <span class="string">'/css-trick/'</span>, <span class="comment">// 仓库名称</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+        
+            <div class="prev-next">
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一页&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/2019/08/16/automation/travis-ci/" rel="prev" title="travis自动构建和部署vuePress文档到Github Pages">
+                                    
+                                        travis自动构建和部署vuePress文档到Github Pages
+                                    
+                                </a>
+                            </h4>
+                            
+                                
+                                <h6 class="tags">
+                                    <a class="tag" href="/tags/自动化工程/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>自动化工程</a> <a class="tag" href="/tags/构建/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>构建</a> <a class="tag" href="/tags/travis/"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>travis</a>
+                                </h6>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+      </section>
+    </article>
+  
 
-<p>在<code>package.json</code>文件中添加两条脚本</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">"scripts": &#123;</span><br><span class="line">    ...</span><br><span class="line">    "docs:dev": "vuepress dev docs",</span><br><span class="line">    "docs:build": "vuepress build docs"</span><br><span class="line">&#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+  
+    <!-- 显示推荐文章和评论 -->
 
-<p>添加本地依赖<code>yarn add -D vuepress</code></p>
-<h2 id="配置-travis-yml文件"><a href="#配置-travis-yml文件" class="headerlink" title="配置.travis.yml文件"></a>配置.travis.yml文件</h2><p>在项目的根目录下，新建<code>.travis.yml</code>文件，</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">10</span></span><br><span class="line"><span class="attr">cache:</span> <span class="string">yarn</span></span><br><span class="line"><span class="attr">install:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">yarn</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">yarn</span> <span class="attr">docs:build</span></span><br><span class="line"><span class="attr">after_success:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">cd</span> <span class="string">docs/.vuepress/dist</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">init</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">config</span> <span class="bullet">--global</span> <span class="string">user.name</span> <span class="string">"$&#123;U_NAME&#125;"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">config</span> <span class="bullet">--global</span> <span class="string">user.email</span> <span class="string">"$&#123;U_EMAIL&#125;"</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">add</span> <span class="bullet">-A</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">commit</span> <span class="bullet">-m</span> <span class="string">'deploy'</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">git</span> <span class="string">push</span> <span class="bullet">-f</span> <span class="string">"https://$&#123;access_token&#125;@$&#123;GH_REPO&#125;"</span> <span class="attr">master:$&#123;DEPLOY_BRANCH&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line"><span class="attr">  only:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="获取Github-token"><a href="#获取Github-token" class="headerlink" title="获取Github token"></a>获取Github token</h2><p>Github中选择<code>Settings-Developer settings-Personal access tokens</code>，创建新的token，除了删除选项，其余都可以勾选上</p>
-<h2 id="关联travis和github"><a href="#关联travis和github" class="headerlink" title="关联travis和github"></a>关联travis和github</h2><p>在<a href="https://travis-ci.org/" target="_blank" rel="noopener">travis-ci</a>中关联Github账号</p>
-<h2 id="travis中项目环境配置"><a href="#travis中项目环境配置" class="headerlink" title="travis中项目环境配置"></a>travis中项目环境配置</h2><p>在<code>travis-ci</code>中，账户选择<code>Settings</code>，选择想要自动化的repo，点击<code>Settings</code>，在<code>Environment Variables</code>中，新增5个环境变量<code>access_token</code>(github token)、<code>U_NAME</code>(git用户名)、<code>U_EMAIL</code>(git邮箱)、<code>GH_REPO</code>(项目仓库地址)、<code>DEPLOY_BRANCH</code>(发布分支，value为gh-pages)</p>
-<h2 id="本地推送代码，查看效果"><a href="#本地推送代码，查看效果" class="headerlink" title="本地推送代码，查看效果"></a>本地推送代码，查看效果</h2><p>本地push代码到github，travis在我们push完代码后，会自动执行<code>.travis.yml</code>中的指令</p>
-<p><fancybox><img src="/2019/08/16/automation/travis-ci/travis2.png" alt="avatar"></fancybox></p>
 
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/自动化工程/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>自动化工程</a>
-        
-          <a href="/tags/构建/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>构建</a>
-        
-          <a href="/tags/travis/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>travis</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
   
 
 
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/08/12/如何选择前端框架/">
-      如何选择前端框架
-    </a>
-  </h2>
-
-
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://vandvassily.cn" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>vandvassily</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-08-12</p>
-  </a>
-</div>
-
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/Coding/前端/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>Coding&nbsp;/&nbsp;前端</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <h3 id="框架选择的原则"><a href="#框架选择的原则" class="headerlink" title="框架选择的原则"></a>框架选择的原则</h3><ul>
-<li>兼容性</li>
-<li>易用性和学习成本</li>
-<li>生态系统</li>
-</ul>
-<h4 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h4><p>如果是公司项目，则需要根据公司的产品性质和目标用户决定，例如政府单位，使用的是IE6-8的浏览器，则需要考虑框架的兼容性；如果是移动端项目，则基本可以选择最新最流行的框架，例如Vue、React等</p>
-<h4 id="易用性"><a href="#易用性" class="headerlink" title="易用性"></a>易用性</h4><p>框架易于上手和学习，方便新人进行开发和维护</p>
-<h4 id="生态系统"><a href="#生态系统" class="headerlink" title="生态系统"></a>生态系统</h4><p>社区活跃，插件多，方便开发和提高开发速度，避免重复造轮子</p>
-<hr>
-<p>框架的选择，最新的不一定最好，要选择最适合自己的</p>
-
-      
-    </div>
-    
-      <div class="full-width auto-padding tags">
-        
-          <a href="/tags/javascript/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>javascript</a>
-        
-          <a href="/tags/框架/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>框架</a>
-        
-          <a href="/tags/随笔/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>随笔</a>
-        
-      </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-        
-          <div class='post-wrapper'>
-            <article class="post reveal ">
   
 
 
-  <section class='meta'>
-    
-    
-    <div class="meta" id="header-meta">
-      
-        
-  <h2 class="title">
-    <a href="/2019/07/24/hello-world/">
-      Hello World
-    </a>
-  </h2>
 
 
-      
-      <div class='new-meta-box'>
-        
-          
-        
-          
-            
-  <div class='new-meta-item author'>
-    <a href="http://vandvassily.cn" rel="nofollow">
-      
-        <i class="fas fa-user" aria-hidden="true"></i>
-      
-      <p>vandvassily</p>
-    </a>
-  </div>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
-          
-        
-          
-            <div class="new-meta-item date">
-  <a class='notlink'>
-    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
-    <p>2019-07-24</p>
-  </a>
-</div>
 
-          
-        
-          
-            
-  
-  <div class='new-meta-item category'>
-    <a href='/categories/2019/' rel="nofollow">
-      <i class="fas fa-folder-open" aria-hidden="true"></i>
-      <p>2019</p>
-    </a>
-  </div>
-
-
-          
-        
-          
-            
-
-          
-        
-          
-            
-
-          
-        
-      </div>
-      
-        <hr>
-      
-    </div>
-  </section>
-
-
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    
-  </section>
-</article>
-
-          </div>
-        
-      
-    
-  </section>
-  
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
-
-  
+  <script>
+    window.subData = {
+      title: 'gulp配置',
+      tools: true
+    }
+  </script>
 
 
 </div>
@@ -806,6 +532,20 @@
           
           
             
+  <section class='widget toc-wrapper'>
+    
+<header class='pure'>
+  <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+  
+    <div class='wrapper'><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+  
+</header>
+
+    <div class='content pure'>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#gulp配置"><span class="toc-text">gulp配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#项目结构"><span class="toc-text">项目结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加公共头部和尾部"><span class="toc-text">添加公共头部和尾部</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#css处理"><span class="toc-text">css处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js处理"><span class="toc-text">js处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片处理"><span class="toc-text">图片处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html处理"><span class="toc-text">html处理</span></a></li></ol></li></ol>
+    </div>
+  </section>
+
 
           
         

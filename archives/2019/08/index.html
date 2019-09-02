@@ -282,9 +282,143 @@
         
           
         
+          
+        
       
     
     
+      
+        
+          <div class='post-wrapper'>
+            <article class="post reveal ">
+  
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  <h2 class="title">
+    <a href="/2019/08/29/automation/gulp-config/">
+      gulp配置
+    </a>
+  </h2>
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+  <div class='new-meta-item author'>
+    <a href="http://vandvassily.cn" rel="nofollow">
+      
+        <i class="fas fa-user" aria-hidden="true"></i>
+      
+      <p>vandvassily</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+    <p>2019-08-29</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/自动化工程/构建工具/' rel="nofollow">
+      <i class="fas fa-folder-open" aria-hidden="true"></i>
+      <p>自动化工程&nbsp;/&nbsp;构建工具</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+  <section class="article typo">
+    <div class="article-entry" itemprop="articleBody">
+      <h1 id="gulp配置"><a href="#gulp配置" class="headerlink" title="gulp配置"></a>gulp配置</h1><p>gulp前端工程构建工具，功能强大，配置简单灵活</p>
+<p>我暂时只用到以下几方面</p>
+<blockquote>
+<ol>
+<li>添加公共头部和尾部</li>
+<li>css和js添加时间戳和版本号</li>
+<li>css兼容前缀、压缩</li>
+<li>js压缩混淆</li>
+</ol>
+</blockquote>
+<p>项目地址: <a href="https://github.com/vandvassily/gulp-config" target="_blank" rel="noopener">gulp-config</a></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 安装所需的npm包</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"># 开发环境</span><br><span class="line">npm run dev</span><br><span class="line"></span><br><span class="line"># 生产环境，文件打包至dist文件夹</span><br><span class="line">npm run build</span><br><span class="line"></span><br><span class="line"># 如需压缩js</span><br><span class="line">npm run build:uglify</span><br><span class="line"></span><br><span class="line"># 清空dist文件夹</span><br><span class="line">npm run clean</span><br></pre></td></tr></table></figure>
+
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">gulp-config                                    // 项目名称</span><br><span class="line">├─ .browserslistrc                             // css兼容配置</span><br><span class="line">├─ .gitignore                                  //</span><br><span class="line">├─ node_modules                                // npm包</span><br><span class="line">├─ dist                                        // 生产环境文件</span><br><span class="line">├─ gulpfile.js                                 // gulp配置文件</span><br><span class="line">├─ LICENSE                                     //</span><br><span class="line">├─ package-lock.json                           //</span><br><span class="line">├─ package.json                                // npm包版本管理</span><br><span class="line">├─ README.md                                   // 说明文档</span><br><span class="line">└─ src                                         //</span><br><span class="line">   ├─ assets                                   // 静态文件</span><br><span class="line">   │  ├─ css                                   // css</span><br><span class="line">   │  │  └─ common.css                         // 公共css</span><br><span class="line">   │  ├─ img                                   // 图片</span><br><span class="line">   │  ├─ js                                    // 公共js</span><br><span class="line">   │  └─ lib                                   // 第三方js库</span><br><span class="line">   ├─ include                                  // 公共头部，底部，和内容</span><br><span class="line">   │  ├─ com_body.html                         //</span><br><span class="line">   │  ├─ com_bottom.html                       //</span><br><span class="line">   │  └─ com_head.html                         //</span><br><span class="line">   └─ views                                    // 页面文件夹</span><br><span class="line">      └─ hello-world                           // 某个页面</span><br><span class="line">         ├─ css                                //</span><br><span class="line">         │  └─ index.css                       //</span><br><span class="line">         ├─ index.html                         //</span><br><span class="line">         └─ js                                 //</span><br><span class="line">            └─ index.js                        //</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加公共头部和尾部"><a href="#添加公共头部和尾部" class="headerlink" title="添加公共头部和尾部"></a>添加公共头部和尾部</h2><p>使用插件：<code>gulp-file-include</code><br><fancybox><img src="/2019/08/29/automation/gulp-config/gulp_include1.png" alt="avatar"></fancybox></p>
+<p>模板文件放在<code>src/include</code>中，在需要套入模板的地方使用<code>@@include(&#39;@@webRoot/include/XXX.html&#39;)</code>即可</p>
+<h2 id="css处理"><a href="#css处理" class="headerlink" title="css处理"></a>css处理</h2><p>css只做了浏览器兼容处理，并没有使用压缩功能，如要使用，可以使用<code>gulp-csso</code>进行处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * css添加浏览器兼容</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">css</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> plugins = [</span><br><span class="line">        autoprefixer()</span><br><span class="line">    ];</span><br><span class="line">    <span class="keyword">return</span> src(<span class="string">'src/**/*.css'</span>)</span><br><span class="line">        .pipe(postcss(plugins))</span><br><span class="line">        .pipe(dest(<span class="string">'dist/'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="js处理"><a href="#js处理" class="headerlink" title="js处理"></a>js处理</h2><p>开发环境和生产环境使用的不同方法，根据具体情况决定是否使用js混淆压缩</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 未做混淆压缩，开发使用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">js</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> src(<span class="string">'src/**/*.js'</span>)</span><br><span class="line">        .pipe(dest(<span class="string">'dist/'</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 混淆压缩JS代码，如不需要请不要使用</span></span><br><span class="line"><span class="comment"> * 如果只需要压缩，不需要sourcemaps，去除掉sourcemaps选项即可</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uglifyJs</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> src(<span class="string">'src/**/*.js'</span>, &#123; <span class="attr">sourcemaps</span>: <span class="literal">true</span> &#125;)</span><br><span class="line">        .pipe(uglify())</span><br><span class="line">        .pipe(dest(<span class="string">'dist/'</span>, &#123; <span class="attr">sourcemaps</span>: <span class="string">'.'</span> &#125;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="图片处理"><a href="#图片处理" class="headerlink" title="图片处理"></a>图片处理</h2><p>现在未对图片做压缩处理</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">images</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> src(<span class="string">'src/**/*.&#123;png,jpg,gif&#125;'</span>)</span><br><span class="line">        .pipe(dest(<span class="string">'dist/'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如需要使用图片压缩，自己使用<code>gulp-imagemin</code>实现即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文档地址: https://github.com/sindresorhus/gulp-imagemin</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装插件</span></span><br><span class="line">npm install --save-dev gulp-imagemin</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># gulpfile.js</span><br><span class="line">...</span><br><span class="line"><span class="keyword">const</span> imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>);</span><br><span class="line">···</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">images</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> src(<span class="string">'src/**/*.&#123;png,jpg,gif&#125;'</span>)</span><br><span class="line">        .pipe(imagemin())</span><br><span class="line">        .pipe(dest(<span class="string">'dist/'</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="html处理"><a href="#html处理" class="headerlink" title="html处理"></a>html处理</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getTimestamp</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> timestamp = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">    <span class="keyword">return</span> isDevelopment()</span><br><span class="line">        ? timestamp.getTime()</span><br><span class="line">        : dayjs().format(<span class="string">'YYYY-MM-DD-HH-mm-ss'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * html页面添加公共头部和尾部，以及添加时间戳或版本戳</span></span><br><span class="line"><span class="comment"> * 开发环境为时间戳，生产环境为日期戳</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">html</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> src([<span class="string">'src/**/*.html'</span>])</span><br><span class="line">        .pipe(fileinclude(&#123;</span><br><span class="line">            prefix: <span class="string">'@@'</span>,</span><br><span class="line">            basepath: <span class="string">'@file'</span></span><br><span class="line">        &#125;))</span><br><span class="line">        .pipe(replace(<span class="string">'@version'</span>, <span class="string">'v='</span> + getTimestamp()))</span><br><span class="line">        .pipe(dest(<span class="string">'dist/'</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+      <div class="full-width auto-padding tags">
+        
+          <a href="/tags/自动化工程/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>自动化工程</a>
+        
+          <a href="/tags/构建/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>构建</a>
+        
+          <a href="/tags/gulp/" rel="nofollow"><i class="fas fa-hashtag fa-fw"></i>gulp</a>
+        
+      </div>
+    
+  </section>
+</article>
+
+          </div>
+        
       
         
           <div class='post-wrapper'>
@@ -689,9 +823,9 @@
         
           <li><a class="flat-box child" title="/categories/Coding/前端/" href="/categories/Coding/前端/"><div class='name'>前端</div><div class='badge'>(1)</div></a></li>
         
-          <li><a class="flat-box" title="/categories/自动化工程/" href="/categories/自动化工程/"><div class='name'>自动化工程</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box" title="/categories/自动化工程/" href="/categories/自动化工程/"><div class='name'>自动化工程</div><div class='badge'>(2)</div></a></li>
         
-          <li><a class="flat-box child" title="/categories/自动化工程/构建工具/" href="/categories/自动化工程/构建工具/"><div class='name'>构建工具</div><div class='badge'>(1)</div></a></li>
+          <li><a class="flat-box child" title="/categories/自动化工程/构建工具/" href="/categories/自动化工程/构建工具/"><div class='name'>构建工具</div><div class='badge'>(2)</div></a></li>
         
       </ul>
     </div>
@@ -722,7 +856,7 @@
 </header>
 
     <div class='content pure'>
-      <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/travis/" style="font-size: 14px; color: #999">travis</a> <a href="/tags/构建/" style="font-size: 14px; color: #999">构建</a> <a href="/tags/框架/" style="font-size: 14px; color: #999">框架</a> <a href="/tags/自动化工程/" style="font-size: 14px; color: #999">自动化工程</a> <a href="/tags/随笔/" style="font-size: 14px; color: #999">随笔</a>
+      <a href="/tags/gulp/" style="font-size: 14px; color: #999">gulp</a> <a href="/tags/javascript/" style="font-size: 14px; color: #999">javascript</a> <a href="/tags/travis/" style="font-size: 14px; color: #999">travis</a> <a href="/tags/构建/" style="font-size: 24px; color: #555">构建</a> <a href="/tags/框架/" style="font-size: 14px; color: #999">框架</a> <a href="/tags/自动化工程/" style="font-size: 24px; color: #555">自动化工程</a> <a href="/tags/随笔/" style="font-size: 14px; color: #999">随笔</a>
     </div>
   </section>
 
